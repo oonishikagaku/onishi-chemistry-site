@@ -16,27 +16,33 @@ export const Profile: React.FC = () => {
         window.requestAnimationFrame(() => {
           const viewportHeight = window.innerHeight;
           const viewportCenter = viewportHeight / 2;
+          const isDesktop = window.innerWidth >= 768; // Simple breakpoint check
 
-          // Logic for active step highlihgt (Desktop)
-          let minDistance = Infinity;
-          let currentActive = 0;
+          // Logic for active step highlihgt (Desktop Only)
+          if (isDesktop) {
+            let minDistance = Infinity;
+            let currentActive = 0;
 
-          stepsRef.current.forEach((step, index) => {
-            if (!step) return;
-            const rect = step.getBoundingClientRect();
-            const elementCenter = rect.top + rect.height / 2;
-            const distance = Math.abs(viewportCenter - elementCenter);
+            stepsRef.current.forEach((step, index) => {
+              if (!step) return;
+              const rect = step.getBoundingClientRect();
+              const elementCenter = rect.top + rect.height / 2;
+              const distance = Math.abs(viewportCenter - elementCenter);
 
-            if (distance < minDistance) {
-              minDistance = distance;
-              currentActive = index;
-            }
-          });
+              if (distance < minDistance) {
+                minDistance = distance;
+                currentActive = index;
+              }
+            });
 
-          setActiveStep(currentActive);
+            setActiveStep(currentActive);
+          }
 
-          // Logic for mobile image fade (Mobile)
-          if (contentRef.current) {
+          // Logic for mobile image fade (Mobile Only or Always if needed, but let's optimize)
+          // Since the image is sticky on mobile, we process this.
+          // Note: If you want this ONLY on mobile, add !isDesktop check. 
+          // Assuming the effect is desired on mobile as built:
+          if (!isDesktop && contentRef.current) {
             const contentRect = contentRef.current.getBoundingClientRect();
             // Delay the timing: Trigger when content is closer to the center/top (e.g., 50% of viewport)
             if (contentRect.top < viewportHeight * 0.5) {
