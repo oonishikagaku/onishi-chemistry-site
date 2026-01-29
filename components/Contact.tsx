@@ -51,7 +51,7 @@ export const Contact: React.FC = () => {
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] mix-blend-multiply"></div>
 
       {/* Giant Watermark */}
-      <div className="absolute top-10 right-[-10%] text-[20vw] font-display text-ink opacity-[0.02] pointer-events-none select-none leading-none">
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 md:left-auto md:right-[-10%] md:translate-x-0 text-[20vw] font-display text-ink opacity-[0.02] pointer-events-none select-none leading-none">
         CONTACT
       </div>
 
