@@ -132,11 +132,11 @@ export const Profile: React.FC = () => {
             <p className="text-[10px] text-gray-400 mb-2 uppercase tracking-widest">Other Major Roles</p>
             <div className="flex items-center gap-3 group">
               <div className="w-1.5 h-1.5 bg-gray-300 rotate-45 group-hover:bg-gold transition-colors"></div>
-              <span>阪大オープン作成メンバー</span>
+              <span>阪大オープン作成</span>
             </div>
             <div className="flex items-center gap-3 group">
               <div className="w-1.5 h-1.5 bg-gray-300 rotate-45 group-hover:bg-gold transition-colors"></div>
-              <span>全統記述模試作成メンバー</span>
+              <span>全統記述模試作成</span>
             </div>
             <div className="flex items-center gap-3 group">
               <div className="w-1.5 h-1.5 bg-gray-300 rotate-45 group-hover:bg-gold transition-colors"></div>
