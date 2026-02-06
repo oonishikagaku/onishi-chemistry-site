@@ -6,13 +6,16 @@ export const Footer: React.FC = () => {
       <div className="container mx-auto px-6 text-center">
         <h2 className="text-xl serif font-bold mb-6 tracking-widest">大西正浩Web化学</h2>
         <div className="flex justify-center space-x-8 mb-8 text-sm text-gray-500">
-            <a href="#hero" className="hover:text-white transition-colors">Top</a>
-            <a href="#profile" className="hover:text-white transition-colors">Profile</a>
-            <a href="#philosophy" className="hover:text-white transition-colors">Philosophy</a>
-            <a href="#contact" className="hover:text-white transition-colors">Contact</a>
+          <a href="#hero" className="hover:text-white transition-colors">Top</a>
+          <a href="#profile" className="hover:text-white transition-colors">Profile</a>
+          <a href="#philosophy" className="hover:text-white transition-colors">Philosophy</a>
+          <a href="#contact" className="hover:text-white transition-colors">Contact</a>
         </div>
         <p className="text-xs text-gray-700">
           &copy; {new Date().getFullYear()} Masahiro Onishi. All Rights Reserved.
+        </p>
+        <p className="text-[10px] text-gray-800 mt-2 opacity-50 hover:opacity-100 transition-opacity">
+          Site by Taro Masago
         </p>
       </div>
     </footer>
