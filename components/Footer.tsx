@@ -14,7 +14,7 @@ export const Footer: React.FC = () => {
         <p className="text-xs text-gray-700">
           &copy; {new Date().getFullYear()} Masahiro Onishi. All Rights Reserved.
         </p>
-        <p className="text-[10px] text-gray-800 mt-2 opacity-50 hover:opacity-100 transition-opacity">
+        <p className="text-[10px] text-gray-600 mt-2 opacity-70 hover:opacity-100 transition-opacity">
           Site by Taro Masago
         </p>
       </div>
