@@ -20,7 +20,24 @@ export const Contact: React.FC = () => {
     const publicKey = 'MZSVa-F8U8JwwZDic';
 
     if (form.current) {
-      emailjs.sendForm(serviceId, templateId, form.current, publicKey)
+      const formData = new FormData(form.current);
+      const userPhone = String(formData.get('user_phone') ?? '').trim();
+      const message = String(formData.get('message') ?? '').trim();
+
+      emailjs.send(
+        serviceId,
+        templateId,
+        {
+          user_name: String(formData.get('user_name') ?? '').trim(),
+          user_email: String(formData.get('user_email') ?? '').trim(),
+          user_phone: userPhone,
+          subject: String(formData.get('subject') ?? '').trim(),
+          // Include the phone number in the existing message variable as well,
+          // so it reaches the email even before the EmailJS template is updated.
+          message: `【電話番号】${userPhone}\n\n【お問い合わせ内容】\n${message}`,
+        },
+        publicKey,
+      )
         .then((result) => {
           console.log(result.text);
           setSubmitStatus('success');
@@ -120,6 +137,24 @@ export const Contact: React.FC = () => {
                     required
                   />
                   <label htmlFor="email" className={labelClasses}>Email Address</label>
+                  {focusLine}
+                </div>
+
+                {/* Phone Input */}
+                <div className={groupClasses}>
+                  <input
+                    type="tel"
+                    name="user_phone"
+                    id="phone"
+                    className={inputClasses}
+                    placeholder="Phone"
+                    autoComplete="tel"
+                    inputMode="tel"
+                    minLength={10}
+                    maxLength={20}
+                    required
+                  />
+                  <label htmlFor="phone" className={labelClasses}>Phone Number</label>
                   {focusLine}
                 </div>
 
