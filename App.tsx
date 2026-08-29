@@ -38,21 +38,21 @@ const App: React.FC = () => {
 
       {/* Opening title */}
       <div
-        className={`fixed inset-0 z-[100] flex items-center justify-center bg-ink transition-all duration-700 ease-in-out ${
+        className={`opening-screen transition-all duration-700 ease-in-out ${
           loading ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
         }`}
         aria-hidden={!loading}
       >
-        <div className="relative z-10 overflow-hidden text-center">
+        <div className="opening-screen__inner">
           <p
-            className={`vertical-text font-serif text-3xl tracking-[0.5em] text-white transition-all delay-200 duration-700 md:text-5xl ${
+            className={`opening-screen__name transition-all delay-200 duration-700 ${
               loading ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
             }`}
           >
             大西正浩
           </p>
           <p
-            className={`mt-4 font-display text-sm tracking-[0.5em] text-gold transition-opacity duration-500 ${
+            className={`opening-screen__subtitle transition-opacity duration-500 ${
               loading ? 'opacity-100' : 'opacity-0'
             }`}
           >

@@ -151,10 +151,76 @@
         ]
       }
     </script>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #0a0a0a;
+      }
+
+      .opening-screen {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0a0a0a;
+      }
+
+      .opening-screen__inner {
+        position: relative;
+        z-index: 1;
+        overflow: hidden;
+        text-align: center;
+      }
+
+      .opening-screen__name {
+        margin: 0;
+        color: #fff;
+        font-family: 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', serif;
+        font-size: 1.875rem;
+        letter-spacing: 0.5em;
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+      }
+
+      .opening-screen__subtitle {
+        margin: 1rem 0 0;
+        color: #cfaa7d;
+        font-family: 'Cormorant Garamond Variable', 'Cormorant Garamond', serif;
+        font-size: 0.875rem;
+        letter-spacing: 0.5em;
+      }
+
+      .skip-link {
+        position: fixed;
+        transform: translateY(-200%);
+      }
+
+      @media (min-width: 768px) {
+        .opening-screen__name {
+          font-size: 3rem;
+        }
+      }
+    </style>
   </head>
   <body>
     <a class="skip-link" href="#main-content">本文へ移動</a>
     <div id="root">
+      <div class="opening-screen" aria-label="読み込み中">
+        <div class="opening-screen__inner">
+          <p class="opening-screen__name">大西正浩</p>
+          <p class="opening-screen__subtitle">WEB CHEMISTRY</p>
+        </div>
+      </div>
+    </div>
+    <noscript>
+      <style>
+        #root {
+          display: none;
+        }
+      </style>
       <main class="seo-fallback" id="main-content">
         <h1>難関大・医学部受験のオンライン化学個別指導｜大西正浩Web化学</h1>
         <p>東大・京大・医学部を目指す高校生・浪人生へ。化学の本質を理解し、初見の入試問題にも対応できる力をZoomの双方向授業で養います。</p>
@@ -191,7 +257,7 @@
           <p>受講希望や学習相談は、サイトのお問い合わせフォームからご連絡ください。</p>
         </section>
       </main>
-    </div>
+    </noscript>
     <script type="module" src="/index.tsx"></script>
   </body>
 </html>
