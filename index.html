@@ -1,151 +1,197 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ja">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>大西正浩Web化学 | 難関大合格のためのWeb授業</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --color-ink: #0a0a0a;
-        --color-paper: #f5f5f0;
-        --color-gold: #cfaa7d;
-        --cursor-size: 20px;
-      }
-      body {
-        font-family: 'Shippori Mincho', serif;
-        background-color: var(--color-ink);
-        color: var(--color-paper);
-        overflow-x: hidden;
-        cursor: none; /* Hide default cursor */
-      }
-      .font-sans {
-        font-family: 'Noto Sans JP', sans-serif;
-      }
-      .font-display {
-        font-family: 'Cormorant Garamond', serif;
-      }
-      .vertical-text {
-        writing-mode: vertical-rl;
-        text-orientation: upright;
-        font-feature-settings: "palt";
-      }
-      
-      /* Custom Cursor */
-      .custom-cursor {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: var(--cursor-size);
-        height: var(--cursor-size);
-        border: 1px solid var(--color-paper);
-        border-radius: 50%;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: width 0.3s, height 0.3s, background-color 0.3s, border-color 0.3s;
-        mix-blend-mode: difference;
-      }
-      .custom-cursor.hovered {
-        width: 50px;
-        height: 50px;
-        background-color: var(--color-paper);
-        border-color: transparent;
-        opacity: 0.5;
-      }
-      
-      /* Noise Overlay */
-      .bg-noise {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 50;
-        opacity: 0.07;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-      }
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-      /* Utilities */
-      .text-outline {
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-        color: transparent;
-      }
-      
-      ::selection {
-        background-color: var(--color-gold);
-        color: var(--color-ink);
-      }
-      
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              'ink': '#0a0a0a',
-              'paper': '#f5f5f0',
-              'gold': '#cfaa7d',
-              'gold-light': '#e6d5b8',
-              'charcoal': '#1a1a1a',
-            },
-            fontFamily: {
-              sans: ['Noto Sans JP', 'sans-serif'],
-              serif: ['Shippori Mincho', 'serif'],
-              display: ['Cormorant Garamond', 'serif'],
-            },
-            letterSpacing: {
-              tighter: '-0.05em',
-              widest: '.25em',
-              ultra: '.4em',
-            },
-            animation: {
-              'float': 'float 6s ease-in-out infinite',
-              'spin-slow': 'spin 15s linear infinite',
-            },
-            keyframes: {
-              float: {
-                '0%, 100%': { transform: 'translateY(0)' },
-                '50%': { transform: 'translateY(-20px)' },
+    <title>難関大・医学部受験のオンライン化学個別指導｜大西正浩Web化学</title>
+    <meta
+      name="description"
+      content="河合塾で約40年教鞭をとり、京大オープン作成チーフを務める大西正浩によるオンライン化学個別指導。東大・京大・医学部を目指す高校生・浪人生へ、Zoomの双方向授業で化学の本質から指導します。"
+    />
+    <meta name="author" content="大西正浩" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <link rel="canonical" href="https://www.onishi-chemistry.com/" />
+    <link rel="alternate" hreflang="ja" href="https://www.onishi-chemistry.com/" />
+    <link rel="alternate" hreflang="x-default" href="https://www.onishi-chemistry.com/" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" sizes="any" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preload" href="/hero-chemistry.avif" as="image" type="image/avif" fetchpriority="high" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ja_JP" />
+    <meta property="og:site_name" content="大西正浩Web化学" />
+    <meta property="og:title" content="難関大・医学部受験のオンライン化学個別指導｜大西正浩Web化学" />
+    <meta
+      property="og:description"
+      content="河合塾で約40年教鞭をとり、京大オープン作成チーフを務める大西正浩が、東大・京大・医学部合格へ向けて化学の本質から個別指導します。"
+    />
+    <meta property="og:url" content="https://www.onishi-chemistry.com/" />
+    <meta property="og:image" content="https://www.onishi-chemistry.com/og-image.png" />
+    <meta property="og:image:secure_url" content="https://www.onishi-chemistry.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1731" />
+    <meta property="og:image:height" content="909" />
+    <meta property="og:image:alt" content="黒と金の分子構造を描いた大西正浩Web化学のイメージ" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="難関大・医学部受験のオンライン化学個別指導｜大西正浩Web化学" />
+    <meta
+      name="twitter:description"
+      content="東大・京大・医学部を目指す高校生・浪人生へ。入試を知り尽くした講師がZoomの双方向授業で個別指導します。"
+    />
+    <meta name="twitter:image" content="https://www.onishi-chemistry.com/og-image.png" />
+    <meta name="twitter:image:alt" content="黒と金の分子構造を描いた大西正浩Web化学のイメージ" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://www.onishi-chemistry.com/#website",
+            "url": "https://www.onishi-chemistry.com/",
+            "name": "大西正浩Web化学",
+            "alternateName": "大西Web化学",
+            "inLanguage": "ja-JP",
+            "publisher": { "@id": "https://www.onishi-chemistry.com/#organization" }
+          },
+          {
+            "@type": "EducationalOrganization",
+            "@id": "https://www.onishi-chemistry.com/#organization",
+            "name": "大西正浩Web化学",
+            "url": "https://www.onishi-chemistry.com/",
+            "description": "難関大学・医学部受験を目指す高校生と浪人生のためのオンライン化学個別指導",
+            "image": "https://www.onishi-chemistry.com/og-image.png",
+            "founder": { "@id": "https://www.onishi-chemistry.com/#person" },
+            "areaServed": { "@type": "Country", "name": "日本" }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://www.onishi-chemistry.com/#person",
+            "name": "大西正浩",
+            "jobTitle": "化学講師",
+            "url": "https://www.onishi-chemistry.com/#profile",
+            "image": "https://www.onishi-chemistry.com/onishi-profile.avif",
+            "worksFor": { "@id": "https://www.onishi-chemistry.com/#organization" },
+            "knowsAbout": ["大学受験化学", "難関大学入試", "医学部入試", "化学教育"]
+          },
+          {
+            "@type": ["WebPage", "FAQPage"],
+            "@id": "https://www.onishi-chemistry.com/#webpage",
+            "url": "https://www.onishi-chemistry.com/",
+            "name": "難関大・医学部受験のオンライン化学個別指導｜大西正浩Web化学",
+            "description": "河合塾で約40年教鞭をとり、京大オープン作成チーフを務める大西正浩によるオンライン化学個別指導。",
+            "inLanguage": "ja-JP",
+            "isPartOf": { "@id": "https://www.onishi-chemistry.com/#website" },
+            "about": { "@id": "https://www.onishi-chemistry.com/#organization" },
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "どのような生徒が対象ですか？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "東大・京大などの難関国公立大学、国公立・私立医学部を目指す高校生・浪人生、高校2年生を主な対象としています。現在の成績だけで区切らず、化学を本気で伸ばしたい方を指導します。"
+                }
               },
-              fadeIn: {
-                '0%': { opacity: '0' },
-                '100%': { opacity: '1' },
+              {
+                "@type": "Question",
+                "name": "授業はどのように行いますか？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Zoomを使った双方向のオンライン授業です。週1回、1回90〜100分を基本に、生徒の理解度や反応を確認しながら進め、授業後には質問対応の時間も設けます。"
+                }
               },
-              slideUp: {
-                '0%': { transform: 'translateY(20px)', opacity: '0' },
-                '100%': { transform: 'translateY(0)', opacity: '1' },
+              {
+                "@type": "Question",
+                "name": "どのような講座がありますか？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "難関国公立の化学、国公立医学部の化学、私立医学部の化学、難関大合格のための高2化学の4講座を設置しています。"
+                }
               },
-              slideRight: {
-                '0%': { transform: 'translateX(-20px)', opacity: '0' },
-                '100%': { transform: 'translateX(0)', opacity: '1' },
+              {
+                "@type": "Question",
+                "name": "暗記が苦手でも受講できますか？",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "受講できます。知識の丸暗記ではなく、化学現象の理由や問題の背景を高校化学の範囲で理解し、初見の問題にも対応できる基礎力を養います。"
+                }
               }
+            ]
+          },
+          {
+            "@type": "Service",
+            "@id": "https://www.onishi-chemistry.com/#service",
+            "name": "難関大・医学部受験向けオンライン化学個別指導",
+            "serviceType": "オンライン化学個別指導",
+            "provider": { "@id": "https://www.onishi-chemistry.com/#organization" },
+            "areaServed": { "@type": "Country", "name": "日本" },
+            "audience": {
+              "@type": "EducationalAudience",
+              "educationalRole": "高校生・浪人生"
             }
+          },
+          {
+            "@type": "ItemList",
+            "@id": "https://www.onishi-chemistry.com/#courses",
+            "name": "設置講座",
+            "numberOfItems": 4,
+            "itemListElement": [
+              { "@type": "ListItem", "position": 1, "item": { "@type": "Course", "name": "難関国公立の化学", "provider": { "@id": "https://www.onishi-chemistry.com/#organization" } } },
+              { "@type": "ListItem", "position": 2, "item": { "@type": "Course", "name": "国公立医学部の化学", "provider": { "@id": "https://www.onishi-chemistry.com/#organization" } } },
+              { "@type": "ListItem", "position": 3, "item": { "@type": "Course", "name": "私立医学部の化学", "provider": { "@id": "https://www.onishi-chemistry.com/#organization" } } },
+              { "@type": "ListItem", "position": 4, "item": { "@type": "Course", "name": "難関大合格のための高2化学", "provider": { "@id": "https://www.onishi-chemistry.com/#organization" } } }
+            ]
           }
-        }
+        ]
       }
     </script>
-    <script type="importmap">
-    {
-      "imports": {
-        "react": "https://esm.sh/react@^19.2.3",
-        "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
-        "react/": "https://esm.sh/react@^19.2.3/",
-        "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
-      }
-    }
-    </script>
-  <link rel="stylesheet" href="/index.css">
-</head>
+  </head>
   <body>
-    <div id="root"></div>
-  <script type="module" src="/index.tsx"></script>
-</body>
+    <a class="skip-link" href="#main-content">本文へ移動</a>
+    <div id="root">
+      <main class="seo-fallback" id="main-content">
+        <h1>難関大・医学部受験のオンライン化学個別指導｜大西正浩Web化学</h1>
+        <p>東大・京大・医学部を目指す高校生・浪人生へ。化学の本質を理解し、初見の入試問題にも対応できる力をZoomの双方向授業で養います。</p>
+        <nav aria-label="ページ内メニュー">
+          <a href="#profile">講師紹介</a> / <a href="#system">授業形態</a> /
+          <a href="#format">設置講座</a> / <a href="#voice">合格者の声</a> /
+          <a href="#faq">よくある質問</a> / <a href="#contact">お問い合わせ</a>
+        </nav>
+        <section id="profile">
+          <h2>化学講師・大西正浩</h2>
+          <p>河合塾で約40年間教鞭をとり、浪人生・現役生向けテキストや模試の作成を担当。京大オープン作成チーフとして、入試問題の本質と最新傾向を踏まえた指導を行います。</p>
+        </section>
+        <section id="system">
+          <h2>Zoomによる双方向のオンライン個別指導</h2>
+          <p>週1回・1回90〜100分を基本に、生徒の反応を確認しながら進めます。授業後には質問対応の時間を設け、疑問を残しません。</p>
+        </section>
+        <section id="format">
+          <h2>難関大学・医学部受験の4講座</h2>
+          <p>「難関国公立の化学」「国公立医学部の化学」「私立医学部の化学」「難関大合格のための高2化学」から、志望校と学年に応じて選べます。</p>
+        </section>
+        <section id="voice">
+          <h2>東大・京大合格者の声</h2>
+          <p>化学の本質的な理解、得点力の向上、難関大学合格につながった受講生の体験を紹介しています。</p>
+        </section>
+        <section id="faq">
+          <h2>よくある質問</h2>
+          <h3>どのような生徒が対象ですか？</h3>
+          <p>東大・京大などの難関国公立大学、国公立・私立医学部を目指す高校生・浪人生、高校2年生を主な対象としています。</p>
+          <h3>授業はどのように行いますか？</h3>
+          <p>Zoomを使った双方向のオンライン授業です。週1回、1回90〜100分を基本とし、授業後には質問対応の時間も設けます。</p>
+        </section>
+        <section id="contact">
+          <h2>受講相談・お問い合わせ</h2>
+          <p>受講希望や学習相談は、サイトのお問い合わせフォームからご連絡ください。</p>
+        </section>
+      </main>
+    </div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
 </html>

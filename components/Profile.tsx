@@ -69,7 +69,7 @@ export const Profile: React.FC = () => {
       type: 'intro',
       content: (
         <div className="relative pl-4 md:pl-0">
-          <span className="absolute -left-12 md:-left-16 top-1 text-xs font-sans tracking-widest text-gold opacity-0 animate-[fadeIn_1s_ease-out_forwards]" style={{ animationDelay: '0.2s' }}>01</span>
+          <span className="absolute -left-12 md:-left-16 top-1 text-xs font-sans tracking-widest text-[#765226] opacity-0 animate-[fadeIn_1s_ease-out_forwards]" style={{ animationDelay: '0.2s' }}>01</span>
           <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold leading-[1.4] break-words tracking-tight">
             受験化学の<br />
             <span className="relative inline-block text-ink mx-1">
@@ -79,7 +79,7 @@ export const Profile: React.FC = () => {
             を、<br />
             紐解く。
           </h2>
-          <p className="mt-8 text-xs md:text-sm font-display tracking-[0.3em] text-gold uppercase">
+          <p className="mt-8 text-xs md:text-sm font-display tracking-[0.3em] text-[#765226] uppercase">
             Instructor Profile
           </p>
         </div>
@@ -129,7 +129,7 @@ export const Profile: React.FC = () => {
           </p>
 
           <div className="grid grid-cols-1 gap-3 text-sm font-sans text-gray-600 tracking-wide border-t border-ink/10 pt-6">
-            <p className="text-[10px] text-gray-400 mb-2 uppercase tracking-widest">Other Major Roles</p>
+            <p className="text-[10px] text-gray-600 mb-2 uppercase tracking-widest">Other Major Roles</p>
             <div className="flex items-center gap-3 group">
               <div className="w-1.5 h-1.5 bg-gray-300 rotate-45 group-hover:bg-gold transition-colors"></div>
               <span>阪大オープン作成</span>
@@ -152,7 +152,7 @@ export const Profile: React.FC = () => {
         <div className="relative">
           <span className="absolute -left-16 top-0 text-xs font-sans tracking-widest text-gold hidden md:block">03</span>
           <div className="flex items-baseline gap-4 mb-6">
-            <span className="font-display text-5xl md:text-6xl text-gold/30 font-light">I.</span>
+            <span aria-hidden="true" className="font-display text-5xl md:text-6xl text-[#765226] font-light">I.</span>
             <h3 className="text-2xl md:text-3xl font-bold font-serif">『大西化学』の真髄</h3>
           </div>
           <p className="text-gray-600 leading-loose font-sans text-base md:text-lg pl-6 border-l-2 border-gold/20">
@@ -167,7 +167,7 @@ export const Profile: React.FC = () => {
         <div className="relative">
           <span className="absolute -left-16 top-0 text-xs font-sans tracking-widest text-gold hidden md:block">04</span>
           <div className="flex items-baseline gap-4 mb-6">
-            <span className="font-display text-5xl md:text-6xl text-gold/30 font-light">II.</span>
+            <span aria-hidden="true" className="font-display text-5xl md:text-6xl text-[#765226] font-light">II.</span>
             <h3 className="text-2xl md:text-3xl font-bold font-serif">入試を知り尽くす</h3>
           </div>
           <p className="text-gray-600 leading-loose font-sans text-base md:text-lg pl-6 border-l-2 border-gold/20">
@@ -210,8 +210,12 @@ export const Profile: React.FC = () => {
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-paper z-10"></div>
 
               <img
-                src="/onishi-profile.png"
-                alt="Masahiro Onishi"
+                src="/onishi-profile.avif"
+                alt="化学講師 大西正浩"
+                width="610"
+                height="605"
+                loading="lazy"
+                decoding="async"
                 className={`w-full h-full object-cover object-top transition-all duration-1000 ease-in-out ${
                   // Start: Popped out (scaled up, shadow). End: Normal (scaled down, flat).
                   !isContentVisible ? 'scale-110' : 'scale-100'
@@ -239,8 +243,8 @@ export const Profile: React.FC = () => {
                   data-aos="fade-up"
                 >
                   {/* Card Header Decoration */}
-                  <div className="flex items-center gap-4 mb-6 opacity-50">
-                    <span className="font-display text-3xl text-gold/60">0{index + 1}.</span>
+                  <div aria-hidden="true" className="flex items-center gap-4 mb-6">
+                    <span className="font-display text-3xl text-[#765226]">0{index + 1}.</span>
                     <div className="h-[1px] flex-1 bg-gold/30"></div>
                   </div>
 
@@ -273,8 +277,12 @@ export const Profile: React.FC = () => {
                 {/* Static Image */}
                 <div className="relative w-full h-full overflow-hidden shadow-2xl bg-gray-200">
                   <img
-                    src="/onishi-profile.png"
-                    alt="Masahiro Onishi"
+                    src="/onishi-profile.avif"
+                    alt="化学講師 大西正浩"
+                    width="610"
+                    height="605"
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover"
                   />
 

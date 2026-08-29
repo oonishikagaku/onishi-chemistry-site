@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://www.onishi-chemistry.com/sitemap.xml
+Host: www.onishi-chemistry.com

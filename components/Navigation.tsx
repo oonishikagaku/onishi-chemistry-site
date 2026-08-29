@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { NavItem } from '../types';
 import { ArrowRight } from 'lucide-react';
 
-// Extended Nav Item with Image mapping
 interface ExtendedNavItem extends NavItem {
-  image: string;
   subLabel: string;
 }
 
@@ -13,20 +11,42 @@ const navItems: ExtendedNavItem[] = [
     label: 'Top',
     href: '#hero',
     subLabel: 'トップページ',
-    image: 'https://images.unsplash.com/photo-1614850523060-8da1d56ae167?q=80&w=2670&auto=format&fit=crop'
   },
   {
-    label: 'Format',
-    href: '#format',
+    label: 'Profile',
+    href: '#profile',
+    subLabel: '講師紹介',
+  },
+  {
+    label: 'Philosophy',
+    href: '#philosophy',
+    subLabel: '指導理念',
+  },
+  {
+    label: 'System',
+    href: '#system',
     subLabel: '授業形態',
-    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=1000'
+  },
+  {
+    label: 'Courses',
+    href: '#format',
+    subLabel: '設置講座',
+  },
+  {
+    label: 'Results',
+    href: '#voice',
+    subLabel: '合格者の声',
+  },
+  {
+    label: 'FAQ',
+    href: '#faq',
+    subLabel: 'よくある質問',
   },
   {
     label: 'Contact',
     href: '#contact',
     subLabel: 'お問い合わせ',
-    image: 'https://images.unsplash.com/photo-1516387938699-a93567ec168e?auto=format&fit=crop&q=80&w=1000'
-  }
+  },
 ];
 
 export const Navigation: React.FC = () => {
@@ -92,15 +112,10 @@ export const Navigation: React.FC = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleLinkClick = (item: typeof navItems[0]) => {
+  const handleLinkClick = () => {
     setIsOpen(false);
     document.body.style.overflow = '';
     setHoveredIdx(null);
-
-    const element = document.querySelector(item.href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
   };
 
   const getHeaderStyle = () => {
@@ -120,16 +135,18 @@ export const Navigation: React.FC = () => {
       <header
         className={`fixed top-0 left-0 right-0 z-50 flex justify-between items-center px-6 md:px-12 transition-all duration-700 ${headerStyle}`}
       >
-        <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); }} className="relative z-50 group text-left">
+        <a href="#hero" aria-label="大西正浩Web化学 トップへ" className="relative z-50 group text-left">
           <div className="text-xl md:text-2xl font-bold tracking-[0.2em] serif text-current">
             大西正浩Web化学
           </div>
-        </button>
+        </a>
 
         <button
           onClick={toggleMenu}
           className="relative z-50 p-2 group flex items-center gap-3"
-          aria-label="Menu"
+          aria-label={isOpen ? 'メニューを閉じる' : 'メニューを開く'}
+          aria-expanded={isOpen}
+          aria-controls="global-menu"
         >
           <span className={`hidden md:block text-xs tracking-widest uppercase transition-opacity ${isOpen ? 'text-white' : 'group-hover:opacity-70'}`}>
             {isOpen ? 'Close' : 'Menu'}
@@ -144,7 +161,9 @@ export const Navigation: React.FC = () => {
 
       {/* Full Screen Overlay - Awwwards Style */}
       <div
-        className={`fixed inset-0 bg-ink z-40 transition-all duration-[800ms] cubic-bezier(0.76, 0, 0.24, 1) ${isOpen ? 'translate-y-0' : '-translate-y-full'
+        id="global-menu"
+        aria-hidden={!isOpen}
+        className={`fixed inset-0 bg-ink z-40 transition-all duration-[800ms] cubic-bezier(0.76, 0, 0.24, 1) ${isOpen ? 'translate-y-0 pointer-events-auto' : '-translate-y-full pointer-events-none'
           }`}
       >
         <div className="flex h-full w-full">
@@ -166,9 +185,10 @@ export const Navigation: React.FC = () => {
                   className="group relative border-b border-white/10 shrink-0"
                   onMouseEnter={() => setHoveredIdx(idx)}
                 >
-                  <button
-                    onClick={() => handleLinkClick(item)}
-                    className={`w-full flex items-center justify-between py-4 md:py-8 transition-all duration-700 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+                  <a
+                    href={item.href}
+                    onClick={handleLinkClick}
+                    className={`w-full flex items-center justify-between py-3 md:py-5 transition-all duration-700 transform ${isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
                       }`}
                     style={{ transitionDelay: `${100 + idx * 50}ms` }}
                   >
@@ -187,7 +207,7 @@ export const Navigation: React.FC = () => {
                     <div className="opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500">
                       <ArrowRight className="text-gold w-5 h-5 md:w-8 md:h-8" />
                     </div>
-                  </button>
+                  </a>
 
                   {/* Hover Overlay Line */}
                   <div className="absolute bottom-0 left-0 w-0 h-[1px] bg-gold group-hover:w-full transition-all duration-700 ease-out"></div>
@@ -207,28 +227,26 @@ export const Navigation: React.FC = () => {
               <span className="font-display text-9xl text-white/5 tracking-widest rotate-90">MENU</span>
             </div>
 
-            {navItems.map((item, idx) => (
-              <div
-                key={idx}
-                className={`absolute inset-0 transition-all duration-1000 ease-out ${hoveredIdx === idx ? 'opacity-100 scale-100' : 'opacity-0 scale-110'
-                  }`}
-              >
-                <div className="absolute inset-0 bg-black/40 z-10"></div>
-                <img
-                  src={item.image}
-                  alt={item.label}
-                  className="w-full h-full object-cover grayscale opacity-60 mix-blend-screen"
-                />
+            <div className="absolute inset-0">
+              <div className="absolute inset-0 bg-black/50 z-10"></div>
+              <img
+                src="/hero-chemistry.avif"
+                alt=""
+                width="1920"
+                height="1280"
+                loading="lazy"
+                decoding="async"
+                aria-hidden="true"
+                className="w-full h-full object-cover grayscale opacity-60 mix-blend-screen"
+              />
 
-                {/* Decorative elements over image */}
-                <div className="absolute bottom-12 left-12 z-20">
-                  <h2 className="text-5xl font-display text-white mb-2 tracking-wide translate-y-4 opacity-0 transition-all duration-700 delay-100" style={{ transform: hoveredIdx === idx ? 'translateY(0)' : 'translateY(20px)', opacity: hoveredIdx === idx ? 1 : 0 }}>
-                    {item.label}
-                  </h2>
-                  <div className="w-12 h-[1px] bg-gold transition-all duration-700 delay-200" style={{ width: hoveredIdx === idx ? '3rem' : '0' }}></div>
-                </div>
+              <div className="absolute bottom-12 left-12 z-20">
+                <p className="text-5xl font-display text-white mb-2 tracking-wide transition-all duration-500">
+                  {hoveredIdx === null ? 'Menu' : navItems[hoveredIdx].label}
+                </p>
+                <div className="w-12 h-[1px] bg-gold"></div>
               </div>
-            ))}
+            </div>
           </div>
 
         </div>
