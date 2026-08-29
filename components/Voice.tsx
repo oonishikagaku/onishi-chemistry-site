@@ -9,7 +9,7 @@ export const Voice: React.FC = () => {
             jpUni: "東京大学",
             status: "合格",
             highlight: "校内一位・学年一位",
-            quote: "大西先生のとてもわかりやすい説明で化学への理解が深まり、高3の夏の模試で化学で<span class='text-gold'>校内一位</span>、秋の模試で<span class='text-gold'>総合学年一年</span>をとれました。",
+            quote: "大西先生のとてもわかりやすい説明で化学への理解が深まり、高3の夏の模試で化学で<span class='text-gold'>校内一位</span>、秋の模試で<span class='text-gold'>総合学年一位</span>をとれました。",
             isFeature: true
         },
         {

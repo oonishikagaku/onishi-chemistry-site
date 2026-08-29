@@ -14,15 +14,19 @@ export const Philosophy: React.FC = () => {
 
          <div className="container mx-auto px-6 max-w-6xl relative z-10">
 
-            <Reveal width="100%">
-               <div className="flex flex-col items-center text-center mb-16 md:mb-24">
-                  <span className="text-gold font-display text-xs md:text-sm tracking-[0.5em] mb-6 md:mb-8 border border-gold/30 px-6 py-2 rounded-full">PHILOSOPHY</span>
-                  <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight">
-                     テクニックは、<br />
-                     <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-white">通じない。</span>
-                  </h2>
-               </div>
-            </Reveal>
+            <div className="flex flex-col items-center text-center mb-16 md:mb-24">
+               <Reveal>
+                  <span className="inline-block text-gold font-display text-xs md:text-sm tracking-[0.5em] mb-6 md:mb-8 border border-gold/30 px-6 py-2 rounded-full">PHILOSOPHY</span>
+               </Reveal>
+               <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight">
+                  <Reveal as="span" mask width="100%" delay={100} duration={1100}>
+                     <span className="block">テクニックは、</span>
+                  </Reveal>
+                  <Reveal as="span" mask width="100%" delay={250} duration={1100}>
+                     <span className="block text-transparent bg-clip-text bg-gradient-to-r from-gold to-white text-shimmer">通じない。</span>
+                  </Reveal>
+               </h2>
+            </div>
 
             <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
                <Reveal delay={200}>
@@ -59,7 +63,7 @@ export const Philosophy: React.FC = () => {
             {/* Decorative Quote */}
             <Reveal delay={600} width="100%">
                <div className="mt-20 md:mt-32 text-center">
-                  <p className="font-display text-4xl md:text-6xl text-ink text-stroke opacity-20 italic">
+                  <p className="font-display text-4xl md:text-6xl text-outline opacity-60 italic">
                      "True Fundamentals"
                   </p>
                </div>

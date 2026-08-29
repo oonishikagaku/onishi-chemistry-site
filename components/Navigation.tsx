@@ -163,7 +163,7 @@ export const Navigation: React.FC = () => {
       <div
         id="global-menu"
         aria-hidden={!isOpen}
-        className={`fixed inset-0 bg-ink z-40 transition-all duration-[800ms] cubic-bezier(0.76, 0, 0.24, 1) ${isOpen ? 'translate-y-0 pointer-events-auto' : '-translate-y-full pointer-events-none'
+        className={`fixed inset-0 bg-ink z-40 transition-transform duration-[800ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${isOpen ? 'translate-y-0 pointer-events-auto' : '-translate-y-full pointer-events-none'
           }`}
       >
         <div className="flex h-full w-full">
@@ -172,9 +172,10 @@ export const Navigation: React.FC = () => {
           <div className="w-full md:w-3/5 h-full flex flex-col justify-start md:justify-center px-6 md:px-20 relative z-20 overflow-y-auto pt-24 md:pt-0">
 
             {/* Background Watermark/Ticker */}
-            <div className="absolute top-10 left-0 w-full overflow-hidden opacity-5 pointer-events-none sticky">
-              <div className="whitespace-nowrap font-display text-8xl md:text-[12rem] text-white animate-float">
-                MASAHIRO ONISHI WEB CHEMISTRY
+            <div className="absolute top-10 left-0 w-full overflow-hidden opacity-5 pointer-events-none">
+              <div className="flex whitespace-nowrap font-display text-8xl md:text-[12rem] text-white animate-marquee will-change-transform">
+                <span className="shrink-0 pr-24">MASAHIRO ONISHI WEB CHEMISTRY</span>
+                <span className="shrink-0 pr-24" aria-hidden="true">MASAHIRO ONISHI WEB CHEMISTRY</span>
               </div>
             </div>
 
@@ -237,7 +238,7 @@ export const Navigation: React.FC = () => {
                 loading="lazy"
                 decoding="async"
                 aria-hidden="true"
-                className="w-full h-full object-cover grayscale opacity-60 mix-blend-screen"
+                className={`w-full h-full object-cover grayscale opacity-60 mix-blend-screen transition-transform duration-[2400ms] ease-[cubic-bezier(0.16,1,0.3,1)] ${isOpen ? 'scale-100' : 'scale-110'}`}
               />
 
               <div className="absolute bottom-12 left-12 z-20">

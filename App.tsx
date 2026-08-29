@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Lenis from 'lenis';
+import 'lenis/dist/lenis.css';
 import { Navigation } from './components/Navigation';
 import { Hero } from './components/Hero';
 import { Profile } from './components/Profile';
@@ -21,7 +23,7 @@ const App: React.FC = () => {
     const timer = window.setTimeout(() => {
       setLoading(false);
       document.body.style.overflow = '';
-    }, 1200);
+    }, 1600);
 
     return () => {
       window.clearTimeout(timer);
@@ -29,24 +31,47 @@ const App: React.FC = () => {
     };
   }, []);
 
+  // Inertia smooth scrolling (Lenis). Skipped entirely for reduced-motion users.
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      anchors: { offset: -80 },
+    });
+
+    let rafId = 0;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+    };
+  }, []);
+
   return (
     <main id="main-content" className="w-full min-h-screen relative bg-paper text-ink selection:bg-gold selection:text-white">
       <Cursor />
-      
+
       {/* Noise Texture Overlay */}
       <div className="bg-noise"></div>
 
-      {/* Opening title */}
+      {/* Opening title — lifts away like a curtain once loaded */}
       <div
-        className={`opening-screen transition-all duration-700 ease-in-out ${
-          loading ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0'
+        className={`opening-screen transition-transform duration-[900ms] ease-[cubic-bezier(0.76,0,0.24,1)] ${
+          loading ? 'translate-y-0 pointer-events-auto' : '-translate-y-full pointer-events-none'
         }`}
         aria-hidden={!loading}
       >
         <div className="opening-screen__inner">
           <p
             className={`opening-screen__name transition-all delay-200 duration-700 ${
-              loading ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+              loading ? 'translate-y-0 opacity-100' : '-translate-y-10 opacity-0'
             }`}
           >
             大西正浩
@@ -58,14 +83,15 @@ const App: React.FC = () => {
           >
             WEB CHEMISTRY
           </p>
+          <span className="opening-screen__line" aria-hidden="true"></span>
         </div>
       </div>
-      
+
       <Navigation />
 
       {/* Main Content */}
       <div className="content-sections">
-        <Hero />
+        <Hero ready={!loading} />
         <Profile />
         <Philosophy />
         <ClassSystem />

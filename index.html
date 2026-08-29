@@ -178,7 +178,7 @@
       .opening-screen__name {
         margin: 0;
         color: #fff;
-        font-family: 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', serif;
+        font-family: 'Shippori Mincho', 'Yu Mincho', 'YuMincho', 'Hiragino Mincho ProN', 'Hiragino Mincho Pro', serif;
         font-size: 1.875rem;
         letter-spacing: 0.5em;
         writing-mode: vertical-rl;
@@ -191,6 +191,23 @@
         font-family: 'Cormorant Garamond Variable', 'Cormorant Garamond', serif;
         font-size: 0.875rem;
         letter-spacing: 0.5em;
+      }
+
+      .opening-screen__line {
+        display: block;
+        width: 3.5rem;
+        height: 1px;
+        margin: 1.25rem auto 0;
+        background: #cfaa7d;
+        transform: scaleX(0);
+        transform-origin: center;
+        animation: opening-line 1s cubic-bezier(0.16, 1, 0.3, 1) 0.45s forwards;
+      }
+
+      @keyframes opening-line {
+        to {
+          transform: scaleX(1);
+        }
       }
 
       .skip-link {
@@ -212,6 +229,7 @@
         <div class="opening-screen__inner">
           <p class="opening-screen__name">大西正浩</p>
           <p class="opening-screen__subtitle">WEB CHEMISTRY</p>
+          <span class="opening-screen__line" aria-hidden="true"></span>
         </div>
       </div>
     </div>
